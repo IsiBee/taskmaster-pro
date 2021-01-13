@@ -176,17 +176,25 @@ $(".card .list-group").sortable({
         text: text,
         date: date
       });
-    });
-
+    })
     // trim down list's ID to match object property
     var arrName = $(this)
-    .attr("id")
-    .replace("list-", "");
+      .attr("id")
+      .replace("list-", "");
 
     // update array on tasks object and save
     tasks[arrName] = tempArr;
     saveTasks();
-    
+
+  }
+});
+
+
+$("#trash").droppable({
+  accept: ".card .list-group-item",
+  tolerance: "touch",
+  drop: function (event, ui) {
+    ui.draggable.remove();
   }
 });
 
